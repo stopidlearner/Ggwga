@@ -1,0 +1,66 @@
+<!DOCTYPE html><html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Question App</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f5f5f5;
+  }.app { text-align: center; position: relative; width: 90vw; max-width: 400px; padding: 20px; background: white; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+
+h1 { font-size: 20px; margin-bottom: 30px; }
+
+.buttons { position: relative; height: 120px; }
+
+button { padding: 12px 24px; font-size: 16px; border: none; border-radius: 8px; cursor: pointer; }
+
+#yesBtn { background: #4CAF50; color: white; }
+
+#noBtn { background: #f44336; color: white; position: absolute; left: 60%; top: 40px; }
+
+.success { margin-top: 20px; font-size: 18px; color: green; } </style>
+
+</head>
+<body><div class="app">
+  <h1 id="question">Do you like this app?</h1>  <div class="buttons">
+    <button id="yesBtn">Yes</button>
+    <button id="noBtn">No</button>
+  </div>  <div id="result"></div>
+</div><script>
+const noBtn = document.getElementById('noBtn');
+const yesBtn = document.getElementById('yesBtn');
+const result = document.getElementById('result');
+const container = document.querySelector('.buttons');
+
+function moveNoButton() {
+  const maxX = container.clientWidth - noBtn.offsetWidth;
+  const maxY = container.clientHeight - noBtn.offsetHeight;
+
+  const x = Math.random() * maxX;
+  const y = Math.random() * maxY;
+
+  noBtn.style.left = x + 'px';
+  noBtn.style.top = y + 'px';
+}
+
+// Desktop hover
+noBtn.addEventListener('mouseenter', moveNoButton);
+
+// Mobile touch
+noBtn.addEventListener('touchstart', (e) => {
+  e.preventDefault();
+  moveNoButton();
+});
+
+// Clicking yes
+yesBtn.addEventListener('click', () => {
+  result.innerHTML = '<div class="success">You chose YES! 🎉</div>';
+});
+</script></body>
+</html>
